@@ -11,7 +11,7 @@ db = client.get_database("final-project")
 cards = db.cards
 coins = db.coins
 dice = db.dice
-rps_games = db.rps
+rps_games = db.rps_games
 
 @app.route("/")
 def index():
