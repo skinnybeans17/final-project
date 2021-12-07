@@ -8,9 +8,9 @@ app = Flask(__name__)
 host = os.environ.get("DB_URL")
 client = MongoClient(host=host)
 db = client.get_database("final-project")
-card_draws = db.cards
-coin_flips = db.coins
-dice_rolls = db.dice
+card_draws = db.card_draws
+coin_flips = db.coin_flips
+dice_rolls = db.dice_rolls
 rps_games = db.rps_games
 
 @app.route("/")
@@ -67,7 +67,7 @@ def coin_delete(coin_id):
 
 @app.route("/dice")
 def dice_rolls():
-    return render_template("dice_rolls.html", dice_rolls, dice_rolls)
+    return render_template("dice_rolls.html", dice_rolls=dice_rolls)
 
 @app.route("/dice/new")
 def dice_roll():
