@@ -8,9 +8,9 @@ app = Flask(__name__)
 host = os.environ.get("DB_URL")
 client = MongoClient(host=host)
 db = client.get_database("final-project")
-cards = db.cards
-coins = db.coins
-dice = db.dice
+card_draws = db.cards
+coin_flips = db.coins
+dice_rolls = db.dice
 rps_games = db.rps_games
 
 @app.route("/")
