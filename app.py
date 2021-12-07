@@ -27,11 +27,11 @@ def card_draw():
 
 @app.route('/card', methods=['POST'])
 def card_log():
-  card = {
+  card_draw = {
     'color': request.form.get('color'),
     'number': request.form.get('number'),
     }
-  cards.insert_one(card)
+  card_draws.insert_one(card_draw)
   flash('Your game record has been added!')
   return redirect(url_for('card_draws'))
 
@@ -51,11 +51,11 @@ def coin_flip():
 
 @app.route('/coin', methods=['POST'])
 def coin_log():
-  coin = {
+  coin_flip = {
     'type': request.form.get('type'),
     'side': request.form.get('side'),
     }
-  coins.insert_one(coin)
+  coin_flips.insert_one(coin_flip)
   flash('Your game record has been added!')
   return redirect(url_for('coin_flips'))
 
@@ -75,11 +75,11 @@ def dice_roll():
 
 @app.route('/die', methods=['POST'])
 def dice_log():
-  die = {
+  dice_roll = {
     'dice_num': request.form.get('dice_num'),
     'output_num': request.form.get('output_num'),
     }
-  dice.insert_one(die)
+  dice_rolls.insert_one(dice_roll)
   flash('Your game record has been added!')
   return redirect(url_for('dice_rolls'))
 
