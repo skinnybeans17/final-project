@@ -1,0 +1,14 @@
+<h1 class="mb-5">Coin Flips</h1>
+
+<div class="row">
+  {% for coin_flip in coin_flips %}
+  <div class="row">
+    <div class="col-4 mb-5 text-center">
+      <h2>{{ coin_flip.type }}</h2>
+    </div>
+    <div class="col-4 mb-5 text-center">
+      <h2>{{ coin_flip.side }}</h2>
+    </div>
+  </div>
+  {% endfor %}
+</div>
