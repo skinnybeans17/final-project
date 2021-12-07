@@ -43,7 +43,7 @@ def card_delete(card_id):
 
 @app.route("/coin")
 def coin_flips():
-    return render_template("coin_flips.html")
+    return render_template("coin_flips.html", coin_flips=coin_flips)
 
 @app.route("/coin/new")
 def coin_flip():
@@ -67,7 +67,7 @@ def coin_delete(coin_id):
 
 @app.route("/dice")
 def dice_rolls():
-    return render_template("dice_rolls.html")
+    return render_template("dice_rolls.html", dice_rolls, dice_rolls)
 
 @app.route("/dice/new")
 def dice_roll():
@@ -91,7 +91,7 @@ def die_delete(die_id):
 
 @app.route("/rps")
 def rps_plays():
-    return render_template("rps_plays.html")
+    return render_template("rps_plays.html", rps_games=rps_games)
 
 @app.route("/rps/new")
 def rps_play():
