@@ -19,7 +19,7 @@ def index():
 
 @app.route("/card")
 def card_draws():
-    return render_template("card_draws.html")
+    return render_template("card_draws.html", card_draws=card_draws)
 
 @app.route("/card/new")
 def card_draw():
@@ -37,7 +37,7 @@ def card_log():
 
 @app.route('/card/<card_id>/remove', methods=['POST'])
 def card_delete(card_id):
-    cards.delete_one({'_id': ObjectId(card_id)})
+    card_draws.delete_one({'_id': ObjectId(card_id)})
     flash('Your game record has been deleted!')
     return redirect(url_for('card_draws'))
 
@@ -61,7 +61,7 @@ def coin_log():
 
 @app.route('/coin/<coin_id>/remove', methods=['POST'])
 def coin_delete(coin_id):
-    coins.delete_one({'_id': ObjectId(coin_id)})
+    coin_flips.delete_one({'_id': ObjectId(coin_id)})
     flash('Your game record has been deleted!')
     return redirect(url_for('coin_flips'))
 
@@ -85,7 +85,7 @@ def dice_log():
 
 @app.route('/die/<die_id>/remove', methods=['POST'])
 def die_delete(die_id):
-    dice.delete_one({'_id': ObjectId(die_id)})
+    dice_rolls.delete_one({'_id': ObjectId(die_id)})
     flash('Your game record has been deleted!')
     return redirect(url_for('dice_rolls'))
 
