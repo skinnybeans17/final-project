@@ -116,7 +116,7 @@ def dice_delete(dice_id):
 
 @app.route("/rps")
 def rps_plays():
-    return render_template("rps_plays.html")
+    return render_template("rps_plays.html", rps=rps_games)
 
 @app.route("/rps/new")
 def rps_play():
@@ -129,7 +129,7 @@ def rps_log():
     'output': request.form.get('output'),
     }
   rps_games.insert_one(rps)
-  #flash('Your game record has been added!')
+  flash('Your game record has been added!')
   return redirect(url_for('rps_plays'))
 
 @app.route('/rps/<rps_id>')
