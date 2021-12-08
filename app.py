@@ -55,18 +55,18 @@ def coin_flip():
 
 @app.route('/coin', methods=['POST'])
 def coin_log():
-  coin_flip = {
+  coin = {
     'type': request.form.get('type'),
     'side': request.form.get('side'),
     }
-  coin_flips.insert_one(coin_flip)
+  coin_flips.insert_one(coin)
   flash('Your game record has been added!')
   return redirect(url_for('coin_flips'))
 
 @app.route('/coin/<coin_id>')
 def coin_show(coin_id):
-    coin_flip = coin_flips.find_one({'_id': ObjectId(coin_id)})
-    return render_template('coin_show.html', coin_flip=coin_flip)
+    coin = coin_flips.find_one({'_id': ObjectId(coin_id)})
+    return render_template('coin_show.html', coin=coin)
 
 @app.route('/coin/<coin_id>', methods=['POST'])
 def coin_update(coin_id):
@@ -105,8 +105,8 @@ def dice_log():
 
 @app.route('/dice/<dice_id>')
 def dice_show(dice_id):
-    dice_roll = dice_rolls.find_one({'_id': ObjectId(dice_id)})
-    return render_template('dice_show.html', dice_roll=dice_roll)
+    dice = dice_rolls.find_one({'_id': ObjectId(dice_id)})
+    return render_template('dice_show.html', dice=dice)
 
 @app.route('/dice/<dice_id>/remove', methods=['POST'])
 def dice_delete(dice_id):
