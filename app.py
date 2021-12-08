@@ -39,6 +39,16 @@ def card_show(card_id):
     card_draw = card_draws.find_one({'_id': ObjectId(card_id)})
     return render_template('card_show.html', card_draw=card_draw)
 
+@app.route('/card/<coin_id>', methods=['POST'])
+def card_update(card_id):
+    updated_card = {
+        'card': request.form.get('card'),
+    }
+    coin_flip.update_one(
+        {'_id': ObjectId(card_id)},
+        {'$set': updated_card})
+    return redirect(url_for('playlists_show', card_id=card_id))
+
 @app.route('/card/<card_id>/remove', methods=['POST'])
 def card_delete(card_id):
     card_draws.delete_one({'_id': ObjectId(card_id)})
@@ -108,6 +118,17 @@ def dice_show(dice_id):
     dice = dice_rolls.find_one({'_id': ObjectId(dice_id)})
     return render_template('dice_show.html', dice=dice)
 
+@app.route('/dice/<dice_id>', methods=['POST'])
+def dice_update(dice_id):
+    updated_dice = {
+        'dice_num': request.form.get('dice_num'),
+        'output_num': request.form.get('output_num'),
+    }
+    coin_flip.update_one(
+        {'_id': ObjectId(dice_id)},
+        {'$set': updated_dice})
+    return redirect(url_for('playlists_show', dice_id=dice_id))
+
 @app.route('/dice/<dice_id>/remove', methods=['POST'])
 def dice_delete(dice_id):
     dice_rolls.delete_one({'_id': ObjectId(dice_id)})
@@ -116,7 +137,7 @@ def dice_delete(dice_id):
 
 @app.route("/rps")
 def rps_plays():
-    return render_template("rps_plays.html", rps=rps_games)
+    return render_template("rps_plays.html")
 
 @app.route("/rps/new")
 def rps_play():
@@ -136,6 +157,17 @@ def rps_log():
 def rps_show(rps_id):
     rps = rps_games.find_one({'_id': ObjectId(rps_id)})
     return render_template('rps_show.html', rps=rps)
+
+@app.route('/rps/<rps_id>', methods=['POST'])
+def rps_update(rps_id):
+    updated_rps = {
+        'input': request.form.get('input'),
+        'output': request.form.get('output'),
+    }
+    coin_flip.update_one(
+        {'_id': ObjectId(rps_id)},
+        {'$set': updated_rps})
+    return redirect(url_for('playlists_show', rps_id=rps_id))
 
 @app.route('/rps/<rps_id>/remove', methods=['POST'])
 def rps_delete(rps_id):
