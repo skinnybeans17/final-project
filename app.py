@@ -19,7 +19,7 @@ def index():
 
 @app.route("/card")
 def card_draws():
-    return render_template("card_draws.html", card_draws=card_draws)
+    return render_template("card_draws.html", card_draws=card_draws.find())
 
 @app.route("/card/new")
 def card_draw():
@@ -48,7 +48,7 @@ def card_delete(card_id):
 
 @app.route("/coin")
 def coin_flips():
-    return render_template("coin_flips.html", coin_flips=coin_flips)
+    return render_template("coin_flips.html")
 
 @app.route("/coin/new")
 def coin_flip():
@@ -69,6 +69,17 @@ def coin_show(coin_id):
     coin_flip = coin_flips.find_one({'_id': ObjectId(coin_id)})
     return render_template('coin_show.html', coin_flip=coin_flip)
 
+@app.route('/coin/<coin_id>', methods=['POST'])
+def coin_update(coin_id):
+    updated_coin = {
+        'type': request.form.get('type'),
+        'side': request.form.get('side'),
+    }
+    coin_flip.update_one(
+        {'_id': ObjectId(coin_id)},
+        {'$set': updated_coin})
+    return redirect(url_for('playlists_show', coin_id=coin_id))
+
 @app.route('/coin/<coin_id>/remove', methods=['POST'])
 def coin_delete(coin_id):
     coin_flips.delete_one({'_id': ObjectId(coin_id)})
@@ -77,7 +88,7 @@ def coin_delete(coin_id):
 
 @app.route("/dice")
 def dice_rolls():
-    return render_template("dice_rolls.html", dice_rolls=dice_rolls)
+    return render_template("dice_rolls.html")
 
 @app.route("/dice/new")
 def dice_roll():
@@ -85,11 +96,11 @@ def dice_roll():
 
 @app.route('/dice', methods=['POST'])
 def dice_log():
-  dice_roll = {
+  dice = {
     'dice_num': request.form.get('dice_num'),
     'output_num': request.form.get('output_num'),
     }
-  dice_rolls.insert_one(dice_roll)
+  dice_rolls.insert_one(dice)
   flash('Your game record has been added!')
   return redirect(url_for('dice_rolls'))
 
@@ -106,7 +117,7 @@ def dice_delete(dice_id):
 
 @app.route("/rps")
 def rps_plays():
-    return render_template("rps_plays.html", rps_games=rps_games)
+    return render_template("rps_plays.html")
 
 @app.route("/rps/new")
 def rps_play():
@@ -124,7 +135,7 @@ def rps_log():
 
 @app.route('/rps/<rps_id>')
 def rps_show(rps_id):
-    rps = card_draws.find_one({'_id': ObjectId(rps_id)})
+    rps = rps_games.find_one({'_id': ObjectId(rps_id)})
     return render_template('rps_show.html', rps=rps)
 
 @app.route('/rps/<rps_id>/remove', methods=['POST'])
