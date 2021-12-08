@@ -18,7 +18,7 @@ def index():
     return render_template("index.html")
 
 @app.route("/card")
-def card_draws():
+def card_drawed():
     return render_template("card_draws.html")
 
 @app.route("/card/new")
@@ -56,7 +56,7 @@ def card_delete(card_id):
     return redirect(url_for('card_draws'))
 
 @app.route("/coin")
-def coin_flips():
+def coin_flipped():
     return render_template("coin_flips.html")
 
 @app.route("/coin/new")
@@ -96,7 +96,7 @@ def coin_delete(coin_id):
     return redirect(url_for('coin_flips'))
 
 @app.route("/dice")
-def dice_rolls():
+def dice_rolled():
     return render_template("dice_rolls.html")
 
 @app.route("/dice/new")
