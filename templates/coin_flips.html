@@ -3,13 +3,13 @@
 <a class="btn btn-default navbar-btn bg-warning text-light" href="/coin/new">Record New Record</a>
 
 <div class="row">
-  {% for coin_flip in coin_flips %}
+  {% for coin in coin_flips %}
   <div class="row">
     <div class="col-4 mb-5 text-center">
-      <h2>{{ coin_flip.type }}</h2>
+      <h2>{{ coin.type }}</h2>
     </div>
     <div class="col-4 mb-5 text-center">
-      <h2>{{ coin_flip.side }}</h2>
+      <h2>{{ coin.side }}</h2>
     </div>
   </div>
   {% endfor %}
