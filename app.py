@@ -129,7 +129,7 @@ def rps_log():
     'output': request.form.get('output'),
     }
   rps_games.insert_one(rps)
-  flash('Your game record has been added!')
+  #flash('Your game record has been added!')
   return redirect(url_for('rps_plays'))
 
 @app.route('/rps/<rps_id>')
