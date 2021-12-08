@@ -19,7 +19,7 @@ def index():
 
 @app.route("/card")
 def card_draws():
-    return render_template("card_draws.html", card_draws=card_draws.find())
+    return render_template("card_draws.html")
 
 @app.route("/card/new")
 def card_draw():
@@ -28,8 +28,7 @@ def card_draw():
 @app.route('/card', methods=['POST'])
 def card_log():
   card_draw = {
-    'color': request.form.get('color'),
-    'number': request.form.get('number'),
+    'card': request.form.get('card'),
     }
   card_draws.insert_one(card_draw)
   flash('Your game record has been added!')
