@@ -4,6 +4,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 
 app = Flask(__name__)
+app.secret_key = 'key'
 
 host = os.environ.get("DB_URL")
 client = MongoClient(host=host)
@@ -19,7 +20,8 @@ def index():
 
 @app.route("/card")
 def card_drawed():
-    return render_template("card_draws.html")
+    found_card = card_draws.find()
+    return render_template("card_draws.html", card_drawed=found_card)
 
 @app.route("/card/new")
 def card_draw():
@@ -57,7 +59,8 @@ def card_delete(card_id):
 
 @app.route("/coin")
 def coin_flipped():
-    return render_template("coin_flips.html")
+    found_coin = coin_flips.find()
+    return render_template("coin_flips.html", coin_flipped=found_coin)
 
 @app.route("/coin/new")
 def coin_flip():
@@ -97,7 +100,8 @@ def coin_delete(coin_id):
 
 @app.route("/dice")
 def dice_rolled():
-    return render_template("dice_rolls.html")
+    found_dice = dice_rolls.find()
+    return render_template("dice_rolls.html", dice_rolled=found_dice)
 
 @app.route("/dice/new")
 def dice_roll():
@@ -137,7 +141,8 @@ def dice_delete(dice_id):
 
 @app.route("/rps")
 def rps_plays():
-    return render_template("rps_plays.html")
+    found_rps = rps_games.find()
+    return render_template("rps_plays.html", rps_plays=found_rps)
 
 @app.route("/rps/new")
 def rps_play():
