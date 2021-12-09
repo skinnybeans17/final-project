@@ -1,14 +1,14 @@
 {% extends 'base.html' %} {% block content %}
 <h1 class="mb-5 text-center">Rock-Paper-Scissors Plays</h1>
-<a class="btn btn-default navbar-btn bg-info text-light" href="/rps/new">Record New Record</a>
+<a class="btn btn-default navbar-btn bg-info text-light justify-content-center" href="/rps/new">Record New Record</a>
 
 <div class="row">
   {% for rps in rps_plays %}
   <div class="row">
-    <div class="col-4 mb-5 text-center">
+    <div class="col-6 mb-5 text-center">
       <h2>{{ rps.input }}</h2>
     </div>
-    <div class="col-4 mb-5 text-center">
+    <div class="col-6 mb-5 text-center">
       <h2>{{ rps.output }}</h2>
     </div>
   </div>
