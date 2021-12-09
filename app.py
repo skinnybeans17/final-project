@@ -32,7 +32,7 @@ def card_log():
     }
   card_draws.insert_one(card_draw)
   flash('Your game record has been added!')
-  return redirect(url_for('card_draws'))
+  return redirect(url_for('card_drawed'))
 
 @app.route('/card/<card_id>')
 def card_show(card_id):
@@ -47,13 +47,13 @@ def card_update(card_id):
     coin_flip.update_one(
         {'_id': ObjectId(card_id)},
         {'$set': updated_card})
-    return redirect(url_for('playlists_show', card_id=card_id))
+    return redirect(url_for('card_show', card_id=card_id))
 
 @app.route('/card/<card_id>/remove', methods=['POST'])
 def card_delete(card_id):
     card_draws.delete_one({'_id': ObjectId(card_id)})
     flash('Your game record has been deleted!')
-    return redirect(url_for('card_draws'))
+    return redirect(url_for('card_drawed'))
 
 @app.route("/coin")
 def coin_flipped():
@@ -71,7 +71,7 @@ def coin_log():
     }
   coin_flips.insert_one(coin)
   flash('Your game record has been added!')
-  return redirect(url_for('coin_flips'))
+  return redirect(url_for('coin_flipped'))
 
 @app.route('/coin/<coin_id>')
 def coin_show(coin_id):
@@ -93,7 +93,7 @@ def coin_update(coin_id):
 def coin_delete(coin_id):
     coin_flips.delete_one({'_id': ObjectId(coin_id)})
     flash('Your game record has been deleted!')
-    return redirect(url_for('coin_flips'))
+    return redirect(url_for('coin_flipped'))
 
 @app.route("/dice")
 def dice_rolled():
@@ -111,7 +111,7 @@ def dice_log():
     }
   dice_rolls.insert_one(dice)
   flash('Your game record has been added!')
-  return redirect(url_for('dice_rolls'))
+  return redirect(url_for('dice_rolled'))
 
 @app.route('/dice/<dice_id>')
 def dice_show(dice_id):
@@ -127,13 +127,13 @@ def dice_update(dice_id):
     coin_flip.update_one(
         {'_id': ObjectId(dice_id)},
         {'$set': updated_dice})
-    return redirect(url_for('playlists_show', dice_id=dice_id))
+    return redirect(url_for('dice_show', dice_id=dice_id))
 
 @app.route('/dice/<dice_id>/remove', methods=['POST'])
 def dice_delete(dice_id):
     dice_rolls.delete_one({'_id': ObjectId(dice_id)})
     flash('Your game record has been deleted!')
-    return redirect(url_for('dice_rolls'))
+    return redirect(url_for('dice_rolled'))
 
 @app.route("/rps")
 def rps_plays():
@@ -167,7 +167,7 @@ def rps_update(rps_id):
     coin_flip.update_one(
         {'_id': ObjectId(rps_id)},
         {'$set': updated_rps})
-    return redirect(url_for('playlists_show', rps_id=rps_id))
+    return redirect(url_for('rps_show', rps_id=rps_id))
 
 @app.route('/rps/<rps_id>/remove', methods=['POST'])
 def rps_delete(rps_id):
