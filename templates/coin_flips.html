@@ -5,11 +5,16 @@
 <div class="row">
   {% for coin in coin_flipped %}
   <div class="row">
-    <div class="col-6 mb-5 text-center">
+    <div class="col-5 mb-5 text-center">
       <h2>{{ coin.type }}</h2>
     </div>
-    <div class="col-6 mb-5 text-center">
+    <div class="col-5 mb-5 text-center">
       <h2>{{ coin.side }}</h2>
+    </div>
+    <div class="col-2 mb-5 text-center">
+      <form method="POST" action="/coin/{{ coin._id }}/delete">
+        <button class="btn btn-default navbar-btn bg-warning text-light justify-content-center" type="submit">Delete Record</button>
+      </form>
     </div>
   </div>
   {% endfor %}

@@ -5,8 +5,13 @@
 <div class="row">
   {% for card_draw in card_drawed %}
   <div class="row">
-    <div class="col-12 mb-5 text-center">
+    <div class="col-10 mb-5 text-center">
       <h2>{{ card_draw.card }}</h2>
+    </div>
+    <div class="col-2 mb-5 text-center">
+      <form method="POST" action="/card/{{ card_draw._id }}/delete">
+        <button class="btn btn-default navbar-btn bg-danger text-light justify-content-center" type="submit">Delete Record</button>
+      </form>
     </div>
   </div>
   {% endfor %}

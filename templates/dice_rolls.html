@@ -5,11 +5,16 @@
 <div class="row text-center">
   {% for dice in dice_rolled %}
   <div class="row text-center">
-    <div class="col-6 mb-5 text-center">
+    <div class="col-5 mb-5 text-center">
       <h2>{{ dice.dice_num }}</h2>
     </div>
-    <div class="col-6 mb-5 text-center">
+    <div class="col-5 mb-5 text-center">
       <h2>{{ dice.output_num }}</h2>
+    </div>
+    <div class="col-2 mb-5 text-center">
+      <form method="POST" action="/dice/{{ dice._id }}/delete">
+        <button class="btn btn-default navbar-btn bg-white text-dark justify-content-center" type="submit">Delete Record</button>
+      </form>
     </div>
   </div>
   {% endfor %}

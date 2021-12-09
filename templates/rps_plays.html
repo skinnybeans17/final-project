@@ -5,11 +5,16 @@
 <div class="row">
   {% for rps in rps_plays %}
   <div class="row">
-    <div class="col-6 mb-5 text-center">
+    <div class="col-5 mb-5 text-center">
       <h2>{{ rps.input }}</h2>
     </div>
-    <div class="col-6 mb-5 text-center">
+    <div class="col-5 mb-5 text-center">
       <h2>{{ rps.output }}</h2>
+    </div>
+    <div class="col-2 mb-5 text-center">
+      <form method="POST" action="/rps/{{ rps._id }}/delete">
+        <button class="btn btn-default navbar-btn bg-info text-light justify-content-center" type="submit">Delete Record</button>
+      </form>
     </div>
   </div>
   {% endfor %}
